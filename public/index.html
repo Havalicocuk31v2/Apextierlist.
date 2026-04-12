@@ -3,73 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Tierlist | Elytra PvP Rankings</title>
+    <title>Apex Tierlist | Elytra Rankings</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-area">
-                <i class="fas fa-feather-alt logo-icon"></i>
-                <h1>Apex Tierlist</h1>
-            </div>
-            <p class="subtitle">Minecraft Elytra PvP Dünyasının En İyileri</p>
-        </header>
-        
-        <main>
-            <div class="rankings-container">
-                <h2>Elytra Kit Rankings</h2>
-                
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" onclick="showPage('home')">Ana Sayfa</a>
+        <a href="#" onclick="showPage('about')">Hakkımızda</a>
+        <a href="#" onclick="showPage('servers')">Sunucularımız</a>
+    </div>
+
+    <nav class="navbar">
+        <span class="menu-icon" onclick="openNav()">&#9776; Apex Tierlist</span>
+    </nav>
+
+    <div id="main" class="container">
+        <section id="home" class="page">
+            <h2 class="section-title">Elytra & Trap Rankings</h2>
+            <div class="table-wrapper">
                 <table class="tier-table">
                     <thead>
                         <tr>
-                            <th>Sıra</th>
-                            <th>Oyuncu</th>
-                            <th>Tier</th>
-                            <th>Son Güncelleme</th>
+                            <th>SIRA</th>
+                            <th>OYUNCU</th>
+                            <th>KİT</th>
+                            <th>TİER</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="tier-ht1">
+                    <tbody id="ranking-data">
+                        <tr class="elytra-row">
                             <td>#1</td>
-                            <td class="player-name"><img src="https://minotar.net/avatar/Player1/32.png" alt="Player1"> Player1</td>
-                            <td class="tier-badge">ht1</td>
-                            <td>Bugün</td>
+                            <td class="player"><img src="https://mc-heads.net/avatar/steve/24"> Havalicocuk</td>
+                            <td><img src="https://minecraft.wiki/images/Elytra_JE2_BE2.png" class="item-icon"> Elytra</td>
+                            <td><span class="badge badge-elytra">HT1</span></td>
                         </tr>
-                        <tr class="tier-ht2">
+                        <tr class="trap-row">
                             <td>#2</td>
-                            <td class="player-name"><img src="https://minotar.net/avatar/Player2/32.png" alt="Player2"> Player2</td>
-                            <td class="tier-badge">ht2</td>
-                            <td>Dün</td>
+                            <td class="player"><img src="https://mc-heads.net/avatar/steve/24"> AhmetPvP</td>
+                            <td><img src="https://minecraft.wiki/images/Oak_Planks_JE6_BE3.png" class="item-icon"> Trap</td>
+                            <td><span class="badge badge-trap">HT1</span></td>
                         </tr>
-                         <tr class="tier-lt1">
-                            <td>#3</td>
-                            <td class="player-name"><img src="https://minotar.net/avatar/Player3/32.png" alt="Player3"> Player3</td>
-                            <td class="tier-badge">lt1</td>
-                            <td>2 gün önce</td>
-                        </tr>
-                        <tr class="tier-lt3">
-                            <td>#4</td>
-                            <td class="player-name"><img src="https://minotar.net/avatar/Player4/32.png" alt="Player4"> Player4</td>
-                            <td class="tier-badge">lt3</td>
-                            <td>1 hafta önce</td>
-                        </tr>
-                         <tr class="tier-lt5">
-                            <td>#5</td>
-                            <td class="player-name"><img src="https://minotar.net/avatar/Player5/32.png" alt="Player5"> Player5</td>
-                            <td class="tier-badge">lt5</td>
-                            <td>1 hafta önce</td>
-                        </tr>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
-        </main>
+        </section>
 
-        <footer>
-            <p>&copy; 2026 Apex Tierlist Community | Elytra PvP</p>
-            <p class="disclaimer">Bu site resmi Minecraft veya mctiers.com sitesi değildir.</p>
-        </footer>
+        <section id="about" class="page" style="display:none;">
+            <h2 class="section-title">Hakkımızda</h2>
+            <div class="content-card">
+                <p>Türkiye'nin en iyi ve en köklü <strong>Elytra Tierlist</strong> platformuyuz.</p>
+                <p>Amacımız, topluluktaki en yetenekli oyuncuları en adil şekilde sıralamaktır. Listelerimizde asla <strong>boosted</strong> (şişirme) verilere yer verilmez; her oyuncu bileğinin hakkıyla oradadır.</p>
+                <p>Adalet ve şeffaflık bizim kırmızı çizgimizdir.</p>
+            </div>
+        </section>
+
+        <section id="servers" class="page" style="display:none;">
+            <h2 class="section-title">Sunucularımız</h2>
+            <div class="content-card">
+                <p>Yakında eklenecektir...</p>
+            </div>
+        </section>
     </div>
+
+    <script>
+        function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+        function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+        
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+            closeNav();
+        }
+    </script>
 </body>
 </html>
