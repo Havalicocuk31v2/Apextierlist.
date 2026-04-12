@@ -1,8 +1,8 @@
 {
   "version": 2,
   "functions": {
-    "api/rankings.js": {
-      "runtime": "@vercel/node"
+    "api/*.js": {
+      "runtime": "vercel-node@latest"
     }
   },
   "routes": [
