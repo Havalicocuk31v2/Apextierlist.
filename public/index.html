@@ -3,93 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Tierlist | Elytra & Trap Rankings</title>
+    <title>APEX TIERLIST TR - Rankings</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#" onclick="showPage('home')"><i class="fas fa-home"></i> Ana Sayfa</a>
-        <a href="#" onclick="showPage('about')"><i class="fas fa-info-circle"></i> Hakkımızda</a>
-        <a href="#" onclick="showPage('servers')"><i class="fas fa-server"></i> Sunucularımız</a>
-    </div>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">APEX<span>TIERS</span></div>
+            <nav>
+                <a href="#" class="active">Sıralama</a>
+                <a href="#">Hakkımızda</a>
+                <a href="https://discord.gg/seninlinkin" target="_blank">Discord</a>
+            </nav>
+        </div>
+    </header>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <span class="menu-icon" onclick="openNav()">&#9776; </span>
-            <div class="logo-area">
-                <img src="elytra.png" alt="Elytra Logo" class="logo-img"> 
-                <h1>Apex Tierlist</h1>
+    <main class="container">
+        <div class="table-header">
+            <div class="header-row">
+                <span class="h-rank">#</span>
+                <span class="h-player">OYUNCU</span>
+                <span class="h-kit">KİT</span>
+                <span class="h-tiers">TIERS</span>
             </div>
         </div>
-    </nav>
+        
+        <div id="ranking-data">
+            <div class="loading">Veriler yükleniyor...</div>
+        </div>
+    </main>
 
-    <div id="main" class="container">
-        <section id="home" class="page">
-            <h2 class="section-title">Elytra & Trap Rankings</h2>
-            <div class="table-wrapper">
-                <table class="tier-table">
-                    <thead>
-                        <tr>
-                            <th>SIRA</th>
-                            <th>OYUNCU</th>
-                            <th>KİT</th>
-                            <th>TİER</th>
-                            <th>PUAN</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ranking-data">
-                        </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="about" class="page" style="display:none;">
-            <h2 class="section-title">Hakkımızda</h2>
-            <div class="content-card about-card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="card-text">
-                    <p>Türkiye'nin en iyi ve en köklü <strong>Elytra Tierlist</strong> platformuyuz.</p>
-                    <p>Amacımız, topluluktaki en yetenekli oyuncuları en adil şekilde sıralamaktır. Listelerimizde asla <strong>boosted</strong> (şişirme) verilere yer verilmez; her oyuncu bileğinin hakkıyla oradadır.</p>
-                    <p>Adalet ve şeffaflık bizim kırmızı çizgimizdir.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="servers" class="page" style="display:none;">
-            <h2 class="section-title">Sunucularımız</h2>
-            <div class="server-card paradise-card">
-                <div class="server-header">
-                    <img src="paradise_profile.png" alt="Paradise Profile" class="server-icon">
-                    <h3>Paradise Klanı</h3>
-                </div>
-                <div class="server-content">
-                    <h4>## Paradise Klanı Sizlere neler sunuyor</h4>
-                    <ul>
-                        <li>Oyununuzu güzelleştiren birbirinden güzel <strong>Pack</strong> ve <strong>Modlar</strong></li>
-                        <li><strong>Saygılı</strong> ve <strong>Sevgi</strong> dolu bir ortam</li>
-                        <li><strong>Bol Bol **Çekiliş** Ve **İtem Desteği**</li>
-                        <li>Aktif **Yetkili** Kadrosu</li>
-                        <li><strong>Her derdinize deva insanlar</strong></li>
-                    </ul>
-                    <p class="server-footer">Bunlardan mahrum kalmamak için sizide bekliyoruz ve paradise prac serverimizada bekleniyorsunuz <span class="ip-address">151.242.52.216</span></p>
-                    <a href="https://discord.gg/prdsmc" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Discord'a Katıl</a>
-                </div>
-            </div>
-        </section>
-    </div>
+    <footer>
+        <p>APEX TIERLIST TR © 2026 - Tüm Hakları Saklıdır.</p>
+    </footer>
 
     <script src="script.js"></script>
-    <script>
-        function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
-        function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
-        
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-            document.getElementById(pageId).style.display = 'block';
-            closeNav();
-        }
-    </script>
 </body>
 </html>
