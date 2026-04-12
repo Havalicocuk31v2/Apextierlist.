@@ -1,212 +1,131 @@
 :root {
-    --bg-color: #f4f7f6;
-    --text-color: #333333;
-    --sidebar-bg: #1a1a1a;
-    --sidebar-text: #b8b8b8;
-    --sidebar-hover: #ffffff;
-    --border-color: #e0e0e0;
-    --card-bg: #ffffff;
-    --elytra-color: #2ecc71; /* Yeşil */
-    --trap-color: #795548;  /* Kahverengi */
-    --puan-color: #3498db;  /* Mavi */
-    --paradise-purple: #8e44ad; /* Mor */
+    --bg-color: #0d1117;
+    --card-bg: rgba(22, 27, 34, 0.6);
+    --border-color: #30363d;
+    --text-color: #c9d1d9;
+    --accent-color: #ff4d4d;
+    --ht-color: #ffaa00;
+    --lt-color: #58a6ff;
 }
 
 body {
-    font-family: 'Poppins', sans-serif; /* Daha şık bir font */
     background-color: var(--bg-color);
     color: var(--text-color);
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    -webkit-font-smoothing: antialiased;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 100px auto;
+    padding: 20px;
 }
 
 /* Navbar */
 .navbar {
-    padding: 10px 20px;
-    background: #fff;
+    background: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
 }
 
-.nav-content {
-    display: flex;
-    align-items: center;
-    max-width: 1200px;
+.nav-container {
+    max-width: 1100px;
     margin: 0 auto;
-}
-
-.menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-.logo-area {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    padding: 0 20px;
 }
 
-.logo-img {
-    width: 30px;
-    height: 30px;
-}
+.logo { font-size: 24px; font-weight: 800; }
+.logo span { color: var(--accent-color); }
 
-.logo-area h1 {
-    font-size: 20px;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin: 0;
-    letter-spacing: 1px;
-}
-
-/* Sidebar */
-.sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    background-color: var(--sidebar-bg);
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 60px;
-}
-
-.sidebar a {
-    padding: 15px 25px;
+nav a {
+    color: #8b949e;
     text-decoration: none;
-    font-size: 16px;
-    color: var(--sidebar-text);
-    display: flex;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a.active, nav a:hover { color: white; }
+
+/* Table Header */
+.header-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 150px 300px;
+    padding: 10px 20px;
+    font-weight: 800;
+    color: #484f58;
+    font-size: 12px;
+}
+
+/* Player Card */
+.player-card {
+    display: grid;
+    grid-template-columns: 80px 1fr 150px 300px;
     align-items: center;
-    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
     transition: 0.2s;
 }
 
-.sidebar a:hover { color: var(--sidebar-hover); background-color: rgba(255,255,255,0.05); }
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    font-size: 30px;
-    color: var(--sidebar-text);
+.player-card:hover {
+    transform: translateX(5px);
+    border-color: #8b949e;
+    background: rgba(33, 38, 45, 0.8);
 }
 
-/* Tablo Yapısı */
-.container { padding: 40px 20px; max-width: 1000px; margin: auto; }
-.section-title { font-size: 22px; font-weight: 800; margin-bottom: 30px; border-left: 6px solid #000; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
-
-.table-wrapper { background: var(--card-bg); border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow-x: auto; border: 1px solid var(--border-color); }
-.tier-table { width: 100%; border-collapse: collapse; min-width: 600px; }
-.tier-table th { text-align: left; padding: 15px; font-size: 11px; color: #7f8c8d; border-bottom: 2px solid var(--border-color); text-transform: uppercase; letter-spacing: 1px; }
-.tier-table td { padding: 18px 15px; border-bottom: 1px solid var(--border-color); font-weight: 500; font-size: 15px; }
-
-.tier-table tbody tr:last-child td { border-bottom: none; }
-.tier-table tbody tr:hover { background-color: #f9f9f9; }
-
-.player { display: flex; align-items: center; gap: 12px; }
-.player img { border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-
-.item-icon { width: 22px; height: 22px; vertical-align: middle; margin-right: 8px; }
-
-/* Rozetler (Badges) */
-.badge {
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 11px;
+.rank-num {
+    font-size: 32px;
     font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-style: italic;
+    color: #30363d;
 }
 
-.badge-elytra { background-color: var(--elytra-color); box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3); }
-.badge-trap { background-color: var(--trap-color); box-shadow: 0 2px 4px rgba(121, 85, 72, 0.3); }
-
-.puan-cell { font-weight: 700; color: var(--puan-color); }
-
-/* Hakkımızda Kartı */
-.about-card {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.card-icon {
-    font-size: 40px;
-    color: var(--text-color);
-}
-
-.card-text { flex: 1; }
-
-.content-card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 12px;
-    line-height: 1.8;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border: 1px solid var(--border-color);
-}
-
-/* Sunucu Kartı */
-.server-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    margin-bottom: 30px;
-}
-
-.server-header {
-    background-color: var(--paradise-purple);
-    color: #fff;
-    padding: 20px 25px;
+.player-info {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.server-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-}
-
-.server-header h3 { margin: 0; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-
-.server-content { padding: 30px 25px; }
-.server-content h4 { font-size: 16px; margin-top: 0; margin-bottom: 15px; color: var(--paradise-purple); }
-.server-content ul { list-style: none; padding: 0; margin-bottom: 25px; }
-.server-content ul li { position: relative; padding-left: 25px; margin-bottom: 10px; line-height: 1.6; }
-.server-content ul li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: var(--paradise-purple); }
-.server-content blockquote { border-left: 4px solid var(--paradise-purple); padding-left: 15px; margin: 0 0 20px 0; color: #555; font-style: italic; }
-
-.server-footer { font-size: 14px; color: #666; margin-bottom: 20px; }
-.ip-address { font-weight: 700; color: #333; background: #eee; padding: 2px 6px; border-radius: 4px; }
-
-.discord-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #7289da;
-    color: #fff;
-    text-decoration: none;
-    padding: 12px 25px;
+.player-info img {
     border-radius: 8px;
-    font-weight: 700;
-    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.discord-btn:hover { background-color: #5b6eae; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(114, 137, 218, 0.3); }
+.player-name {
+    font-size: 18px;
+    font-weight: 700;
+}
 
-/* Poppins Fontu İçin */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
-                                                             
+.kit-info {
+    font-weight: 600;
+    color: #8b949e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tier-box {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 14px;
+    text-align: center;
+    width: fit-content;
+}
+
+.tier-ht { background: rgba(255, 170, 0, 0.1); color: #ffaa00; border: 1px solid #ffaa00; }
+.tier-lt { background: rgba(88, 166, 255, 0.1); color: #58a6ff; border: 1px solid #58a6ff; }
+
+footer { text-align: center; padding: 40px; color: #484f58; font-size: 14px; }
