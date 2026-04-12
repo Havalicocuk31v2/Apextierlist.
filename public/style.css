@@ -1,167 +1,98 @@
-/* Genel Ayarlar */
 :root {
-    --bg-color: #1a1a1a;
-    --card-bg: #2d2d2d;
-    --text-color: #e0e0e0;
-    --accent-color: #ff4757; /* Kırmızı Apex Rengi */
-    --ht1-color: #ffcc00; /* Altın */
-    --ht2-color: #e0e0e0; /* Gümüş */
-    --lt1-color: #cd7f32; /* Bronz */
-    --lt2-color: #4cd137; /* Yeşil */
-    --lt3-color: #00a8ff; /* Mavi */
-    --lt4-color: #9c88ff; /* Mor */
-    --lt5-color: #7f8c8d; /* Gri */
-    --border-color: #444;
+    --bg-color: #ffffff;
+    --text-color: #111111;
+    --sidebar-bg: #111111;
+    --border-color: #eeeeee;
+    --elytra-color: #2ecc71; /* Yeşil */
+    --trap-color: #795548;  /* Kahverengi */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
-    line-height: 1.6;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header Rstili */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 20px 0;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.logo-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-icon {
-    font-size: 3rem;
-    color: var(--accent-color);
-}
-
-header h1 {
-    color: var(--accent-color);
-    font-size: 3.5rem;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: #aaa;
-    margin-top: 10px;
-}
-
-/* Rankings Tablosu */
-.rankings-container {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid var(--border-color);
-}
-
-.rankings-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--text-color);
-    font-size: 2rem;
-}
-
-.tier-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.tier-table th, .tier-table td {
-    text-align: left;
-    padding: 15px;
+/* Navbar */
+.navbar {
+    padding: 15px 25px;
+    background: #fff;
     border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.tier-table th {
-    background-color: rgba(0,0,0,0.2);
-    color: #aaa;
+.menu-icon {
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 800;
     text-transform: uppercase;
-    font-size: 0.9rem;
 }
 
-.tier-table tbody tr:hover {
-    background-color: rgba(255,255,255,0.05);
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: var(--sidebar-bg);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
 }
 
-/* Oyuncu İsmi ve Avatar */
-.player-name {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
+.sidebar a {
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.2s;
 }
 
-.player-name img {
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
+.sidebar a:hover { color: #f1f1f1; }
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
-/* Tier Badge Renkleri */
-.tier-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    color: #000;
+/* Tablo Yapısı */
+.container { padding: 40px 20px; max-width: 900px; margin: auto; }
+.section-title { font-size: 24px; font-weight: 800; margin-bottom: 30px; border-left: 5px solid #000; padding-left: 15px; }
+
+.table-wrapper { overflow-x: auto; }
+.tier-table { width: 100%; border-collapse: collapse; }
+.tier-table th { text-align: left; padding: 12px; font-size: 12px; color: #888; border-bottom: 1px solid var(--border-color); }
+.tier-table td { padding: 15px 12px; border-bottom: 1px solid var(--border-color); font-weight: 500; }
+
+.player { display: flex; align-items: center; gap: 10px; }
+.player img { border-radius: 4px; }
+
+.item-icon { width: 20px; height: 20px; vertical-align: middle; margin-right: 5px; }
+
+/* Rozetler (Badges) */
+.badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
 }
 
-.tier-ht1 .tier-badge { background-color: var(--ht1-color); }
-.tier-ht2 .tier-badge { background-color: var(--ht2-color); }
-.tier-lt1 .tier-badge { background-color: var(--lt1-color); }
-.tier-lt2 .tier-badge { background-color: var(--lt2-color); }
-.tier-lt3 .tier-badge { background-color: var(--lt3-color); }
-.tier-lt4 .tier-badge { background-color: var(--lt4-color); }
-.tier-lt5 .tier-badge { background-color: var(--lt5-color); }
+.badge-elytra { background-color: var(--elytra-color); }
+.badge-trap { background-color: var(--trap-color); }
 
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px 0;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.9rem;
-    color: #777;
-}
-
-.disclaimer {
-    font-size: 0.8rem;
-    font-style: italic;
-    margin-top: 5px;
-}
-
-/* Mobil Uyumluluk */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
-    
-    .tier-table th, .tier-table td {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-    
-    .player-name img {
-        width: 24px;
-        height: 24px;
-    }
+.content-card {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    line-height: 1.8;
 }
