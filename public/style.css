@@ -1,11 +1,10 @@
 :root {
     --bg-color: #0d1117;
-    --card-bg: rgba(22, 27, 34, 0.6);
+    --card-bg: #161b22;
     --border-color: #30363d;
     --text-color: #c9d1d9;
-    --accent-color: #ff4d4d;
-    --ht-color: #ffaa00;
-    --lt-color: #58a6ff;
+    --accent-color: #f85149;
+    --muted-text: #8b949e;
 }
 
 body {
@@ -14,28 +13,29 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 100px auto;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 /* Navbar */
 .navbar {
-    background: var(--card-bg);
+    background: rgba(13, 17, 23, 0.9);
     border-bottom: 1px solid var(--border-color);
     padding: 15px 0;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     backdrop-filter: blur(10px);
 }
 
 .nav-container {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -43,89 +43,104 @@ body {
     padding: 0 20px;
 }
 
-.logo { font-size: 24px; font-weight: 800; }
+.logo { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
 .logo span { color: var(--accent-color); }
 
-nav a {
-    color: #8b949e;
+.nav-links a {
+    color: var(--muted-text);
     text-decoration: none;
     margin-left: 20px;
+    font-size: 14px;
     font-weight: 600;
-    transition: 0.3s;
 }
 
-nav a.active, nav a:hover { color: white; }
+.nav-links a.active { color: white; }
 
-/* Table Header */
-.header-row {
+/* Table Headings */
+.header-grid {
     display: grid;
-    grid-template-columns: 80px 1fr 150px 300px;
+    grid-template-columns: 50px 1fr 120px 200px;
     padding: 10px 20px;
-    font-weight: 800;
-    color: #484f58;
+    color: var(--muted-text);
     font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 /* Player Card */
 .player-card {
     display: grid;
-    grid-template-columns: 80px 1fr 150px 300px;
+    grid-template-columns: 50px 1fr 120px 200px;
     align-items: center;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    padding: 15px 20px;
-    transition: 0.2s;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding: 12px 20px;
+    transition: transform 0.2s;
 }
 
 .player-card:hover {
     transform: translateX(5px);
-    border-color: #8b949e;
-    background: rgba(33, 38, 45, 0.8);
+    background: #1c2128;
 }
 
 .rank-num {
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 800;
     font-style: italic;
-    color: #30363d;
+    color: #484f58;
 }
 
 .player-info {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
-.player-info img {
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+.player-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
 }
 
 .player-name {
-    font-size: 18px;
     font-weight: 700;
+    font-size: 16px;
 }
 
 .kit-info {
-    font-weight: 600;
-    color: #8b949e;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.tier-box {
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-weight: 800;
-    font-size: 14px;
     text-align: center;
-    width: fit-content;
+    font-weight: 600;
+    color: var(--muted-text);
+    font-size: 14px;
 }
 
-.tier-ht { background: rgba(255, 170, 0, 0.1); color: #ffaa00; border: 1px solid #ffaa00; }
-.tier-lt { background: rgba(88, 166, 255, 0.1); color: #58a6ff; border: 1px solid #58a6ff; }
+.tier-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
 
-footer { text-align: center; padding: 40px; color: #484f58; font-size: 14px; }
+.tier-badge {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.points-label {
+    font-size: 12px;
+    color: var(--muted-text);
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Tier Renkleri */
+.ht { background: rgba(255, 170, 0, 0.1); color: #ffaa00; border-color: #ffaa00; }
+.lt { background: rgba(88, 166, 255, 0.1); color: #58a6ff; border-color: #58a6ff; }
+
+footer { text-align: center; padding: 50px; color: var(--muted-text); font-size: 12px; }
