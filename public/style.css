@@ -1,34 +1,66 @@
 :root {
-    --bg-color: #ffffff;
-    --text-color: #111111;
-    --sidebar-bg: #111111;
-    --border-color: #eeeeee;
+    --bg-color: #f4f7f6;
+    --text-color: #333333;
+    --sidebar-bg: #1a1a1a;
+    --sidebar-text: #b8b8b8;
+    --sidebar-hover: #ffffff;
+    --border-color: #e0e0e0;
+    --card-bg: #ffffff;
     --elytra-color: #2ecc71; /* Yeşil */
     --trap-color: #795548;  /* Kahverengi */
+    --puan-color: #3498db;  /* Mavi */
+    --paradise-purple: #8e44ad; /* Mor */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Poppins', sans-serif; /* Daha şık bir font */
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Navbar */
 .navbar {
-    padding: 15px 25px;
+    padding: 10px 20px;
     background: #fff;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .menu-icon {
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
+    margin-right: 15px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 30px;
+    height: 30px;
+}
+
+.logo-area h1 {
+    font-size: 20px;
     font-weight: 800;
     text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 1px;
 }
 
 /* Sidebar */
@@ -46,53 +78,135 @@ body {
 }
 
 .sidebar a {
-    padding: 15px 32px;
+    padding: 15px 25px;
     text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    display: block;
+    font-size: 16px;
+    color: var(--sidebar-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
     transition: 0.2s;
 }
 
-.sidebar a:hover { color: #f1f1f1; }
+.sidebar a:hover { color: var(--sidebar-hover); background-color: rgba(255,255,255,0.05); }
 
 .sidebar .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+    right: 20px;
+    font-size: 30px;
+    color: var(--sidebar-text);
 }
 
 /* Tablo Yapısı */
-.container { padding: 40px 20px; max-width: 900px; margin: auto; }
-.section-title { font-size: 24px; font-weight: 800; margin-bottom: 30px; border-left: 5px solid #000; padding-left: 15px; }
+.container { padding: 40px 20px; max-width: 1000px; margin: auto; }
+.section-title { font-size: 22px; font-weight: 800; margin-bottom: 30px; border-left: 6px solid #000; padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
 
-.table-wrapper { overflow-x: auto; }
-.tier-table { width: 100%; border-collapse: collapse; }
-.tier-table th { text-align: left; padding: 12px; font-size: 12px; color: #888; border-bottom: 1px solid var(--border-color); }
-.tier-table td { padding: 15px 12px; border-bottom: 1px solid var(--border-color); font-weight: 500; }
+.table-wrapper { background: var(--card-bg); border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow-x: auto; border: 1px solid var(--border-color); }
+.tier-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.tier-table th { text-align: left; padding: 15px; font-size: 11px; color: #7f8c8d; border-bottom: 2px solid var(--border-color); text-transform: uppercase; letter-spacing: 1px; }
+.tier-table td { padding: 18px 15px; border-bottom: 1px solid var(--border-color); font-weight: 500; font-size: 15px; }
 
-.player { display: flex; align-items: center; gap: 10px; }
-.player img { border-radius: 4px; }
+.tier-table tbody tr:last-child td { border-bottom: none; }
+.tier-table tbody tr:hover { background-color: #f9f9f9; }
 
-.item-icon { width: 20px; height: 20px; vertical-align: middle; margin-right: 5px; }
+.player { display: flex; align-items: center; gap: 12px; }
+.player img { border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+.item-icon { width: 22px; height: 22px; vertical-align: middle; margin-right: 8px; }
 
 /* Rozetler (Badges) */
 .badge {
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
     font-weight: 800;
     color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.badge-elytra { background-color: var(--elytra-color); }
-.badge-trap { background-color: var(--trap-color); }
+.badge-elytra { background-color: var(--elytra-color); box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3); }
+.badge-trap { background-color: var(--trap-color); box-shadow: 0 2px 4px rgba(121, 85, 72, 0.3); }
+
+.puan-cell { font-weight: 700; color: var(--puan-color); }
+
+/* Hakkımızda Kartı */
+.about-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.card-icon {
+    font-size: 40px;
+    color: var(--text-color);
+}
+
+.card-text { flex: 1; }
 
 .content-card {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 8px;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
     line-height: 1.8;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-color);
 }
+
+/* Sunucu Kartı */
+.server-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.server-header {
+    background-color: var(--paradise-purple);
+    color: #fff;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.server-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.server-header h3 { margin: 0; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+.server-content { padding: 30px 25px; }
+.server-content h4 { font-size: 16px; margin-top: 0; margin-bottom: 15px; color: var(--paradise-purple); }
+.server-content ul { list-style: none; padding: 0; margin-bottom: 25px; }
+.server-content ul li { position: relative; padding-left: 25px; margin-bottom: 10px; line-height: 1.6; }
+.server-content ul li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: var(--paradise-purple); }
+.server-content blockquote { border-left: 4px solid var(--paradise-purple); padding-left: 15px; margin: 0 0 20px 0; color: #555; font-style: italic; }
+
+.server-footer { font-size: 14px; color: #666; margin-bottom: 20px; }
+.ip-address { font-weight: 700; color: #333; background: #eee; padding: 2px 6px; border-radius: 4px; }
+
+.discord-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #7289da;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.discord-btn:hover { background-color: #5b6eae; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(114, 137, 218, 0.3); }
+
+/* Poppins Fontu İçin */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+                                                             
