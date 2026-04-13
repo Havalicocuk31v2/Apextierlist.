@@ -3,57 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX TIERS - Rankings</title>
+    <title>APEX TIERS | Rankings</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
         <div class="nav-container">
-            <div class="logo">APEX<span>TIERS</span></div>
+            <div class="logo" onclick="showSection('rankings')" style="cursor:pointer">APEX<span>TIERS</span></div>
             <nav class="nav-links">
-                <a href="#" class="active">Sıralama</a>
-                <a href="#">Hakkımızda</a>
-                <a href="https://discord.gg/prdsmc" target="_blank">Discord</a>
+                <a href="#" class="nav-item active" onclick="showSection('rankings')">Sıralama</a>
+                <a href="#" class="nav-item" onclick="showSection('servers')">Sunucularımız</a>
+                <a href="https://discord.gg/apextierlist" target="_blank" class="nav-item">Discord</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section class="kit-selector">
-            <button class="kit-btn active" data-kit="all">Overall</button>
-            <button class="kit-btn" data-kit="elytra">Elytra</button>
-            <button class="kit-btn" data-kit="elytratrap">ElytraTrap</button>
+        <section id="rankings-section">
+            <div class="kit-selector">
+                <button class="kit-btn active" data-kit="all">Overall</button>
+                <button class="kit-btn" data-kit="elytra">Elytra</button>
+                <button class="kit-btn" data-kit="elytratrap">ElytraTrap</button>
+            </div>
+            <div id="ranking-data">
+                </div>
         </section>
 
-        <div class="table-header">
-            <div class="header-grid">
-                <span>#</span>
-                <span>OYUNCU</span>
-                <span class="text-right">TIERS</span>
+        <section id="servers-section" style="display: none;">
+            <div class="server-card paradise">
+                <div class="server-header">
+                    <img src="paradise_profile.png" alt="Paradise Logo" class="server-logo">
+                    <div class="server-title">
+                        <h2>Paradise Pratik</h2>
+                        <span class="ip-badge">151.242.52.216</span>
+                    </div>
+                </div>
+                <div class="server-content">
+                    <p>Oyununuzu güzelleştiren birbirinden güzel <strong>Pack</strong> ve <strong>Modlar</strong></p>
+                    <p><strong>Saygılı</strong> ve <strong>Sevgi</strong> dolu bir ortam</p>
+                    <p>Bol Bol <strong>Çekiliş</strong> Ve <strong>İtem Desteği</strong></p>
+                    <p>Aktif <strong>Yetkili</strong> Kadrosu</p>
+                    <p><strong>Her derdinize deva insanlar</strong></p>
+                    <p class="highlight">Bunlardan mahrum kalmamak için sizi de bekliyoruz!</p>
+                </div>
+                <a href="https://discord.gg/prdsmc" target="_blank" class="dc-button-large">Discord'a Katıl</a>
             </div>
-        </div>
-        
-        <div id="ranking-data">
-            </div>
+        </section>
     </main>
 
     <div id="player-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-body">
-                <div class="modal-header-info">
-                    <img id="modal-avatar" src="" alt="avatar">
-                    <div class="modal-text-block">
-                        <h2 id="modal-username"></h2>
-                        <div id="modal-points"></div>
-                    </div>
-                </div>
-                <div class="modal-tier-section">
-                    <h3>Mevcut Tier</h3>
-                    <div id="modal-tier-badge" class="tier-badge large"></div>
-                </div>
+            <div class="close-btn" onclick="closeModal()">&times;</div>
+            <div class="modal-header">
+                <img id="modal-avatar" src="" alt="">
+                <h2 id="modal-username"></h2>
             </div>
+            <div class="modal-tier-list">
+                </div>
         </div>
     </div>
 
