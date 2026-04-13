@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX TIERS | Minecraft Competitive</title>
+    <title>APEX TIERS | Rankings</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -26,25 +26,37 @@
                 <button class="kit-btn" data-kit="elytra">Elytra</button>
                 <button class="kit-btn" data-kit="elytratrap">ElytraTrap</button>
             </div>
-            <div id="ranking-data"></div>
+            
+            <div class="table-header-labels">
+                <span># OYUNCU</span>
+                <span class="text-right">KİT / TIER</span>
+            </div>
+            
+            <div id="ranking-data">
+                </div>
         </section>
 
         <section id="servers-section" style="display: none;">
             <div class="server-card paradise">
                 <div class="server-header">
-                    <h2>Paradise Pratik</h2>
-                    <span class="ip-badge">151.242.52.216</span>
+                    <div class="server-logo-wrap">
+                        <img src="paradise_profile.png" alt="Paradise Logo" class="server-logo">
+                    </div>
+                    <div class="server-title">
+                        <h2>Paradise Pratik</h2>
+                        <span class="ip-badge">151.242.52.216</span>
+                    </div>
                 </div>
                 <div class="server-content">
-                    <p>Oyununuzu güzelleştiren birbirinden güzel <b>Pack</b> ve <b>Modlar</b></p>
-                    <p><b>Saygılı</b> ve <b>Sevgi</b> dolu bir ortam</p>
-                    <p>Bol Bol <b>Çekiliş</b> Ve <b>İtem Desteği</b></p>
-                    <p>Aktif <b>Yetkili</b> Kadrosu</p>
-                    <p><b>Her derdinize deva insanlar</b></p>
-                    <p class="highlight">Bunlardan mahrum kalmamak için sizi de bekliyoruz!</p>
+                    <p>Oyununuzu güzelleştiren birbirinden güzel <strong>Pack</strong> ve <strong>Modlar</strong></p>
+                    <p><strong>Saygılı</strong> ve <strong>Sevgi</strong> dolu bir ortam</p>
+                    <p>Bol Bol <strong>Çekiliş</strong> Ve <strong>İtem Desteği</strong></p>
+                    <p>Aktif <strong>Yetkili</strong> Kadrosu</p>
+                    <p><strong>Her derdinize deva insanlar</strong></p>
+                    <p class="highlight">Bunlardan mahrum kalmamak için sizide bekliyoruz!</p>
                 </div>
                 <a href="https://discord.gg/prdsmc" target="_blank" class="dc-button-large">
-                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" width="20"> Discord'a Katıl
+                    Discord'a Katıl
                 </a>
             </div>
         </section>
@@ -63,12 +75,12 @@
                     <strong id="modal-points"></strong>
                 </div>
                 <div class="stat-box">
-                    <span>AKTİF KİT</span>
+                    <span>KİT BİLGİSİ</span>
                     <strong id="modal-kit"></strong>
                 </div>
             </div>
             <div class="modal-tier-display">
-                <p>RANK BİLGİSİ</p>
+                <p>RANK DURUMU</p>
                 <div id="modal-tier-badge" class="tier-large"></div>
             </div>
         </div>
