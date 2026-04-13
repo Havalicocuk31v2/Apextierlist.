@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX TIERS - Rankings</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
@@ -14,24 +14,58 @@
             <nav class="nav-links">
                 <a href="#" class="active">Sıralama</a>
                 <a href="#">Hakkımızda</a>
-                <a href="#">Discord</a>
+                <a href="https://discord.gg/seninlinkin" target="_blank">Discord</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
+        <section class="kit-selector">
+            <button class="kit-btn active" data-kit="all">
+                <img src="https://minecraft.wiki/images/Nether_Star_JE3_BE2.png" alt="all">
+                Overall
+            </button>
+            <button class="kit-btn" data-kit="elytra">
+                <img src="https://minecraft.wiki/images/Elytra_JE2_BE2.png" alt="elytra">
+                Elytra
+            </button>
+            <button class="kit-btn" data-kit="elytratrap">
+                <img src="https://minecraft.wiki/images/Oak_Planks_JE6_BE3.png" alt="trap">
+                ElytraTrap
+            </button>
+        </section>
+
         <div class="table-header">
             <div class="header-grid">
                 <span>#</span>
                 <span>OYUNCU</span>
-                <span class="text-center">KİT</span>
                 <span class="text-right">TIERS</span>
+                <span class="text-right">PUAN</span>
             </div>
         </div>
         
         <div id="ranking-data">
             </div>
     </main>
+
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-header-info">
+                    <img id="modal-avatar" src="" alt="avatar">
+                    <div class="modal-text-block">
+                        <h2 id="modal-username"></h2>
+                        <div id="modal-points"></div>
+                    </div>
+                </div>
+                <div class="modal-tier-section">
+                    <h3>Mevcut Tier</h3>
+                    <div id="modal-tier-badge" class="tier-badge large"></div>
+                </div>
+                </div>
+        </div>
+    </div>
 
     <footer>
         <p>Copyright © APEXTIERS 2026</p>
