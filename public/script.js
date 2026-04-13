@@ -1,111 +1,86 @@
-let allPlayerData = []; // Veriyi globalde tut
+let rawData = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Veriyi API'den Çek
     fetch('/api/rankings')
         .then(res => res.json())
         .then(data => {
-            allPlayerData = data;
-            renderRankings(allPlayerData, true); // Overall olarak gruplayıp render et
-        })
-        .catch(err => console.error("API Hatası:", err));
+            rawData = data;
+            render('all'); // İlk açılışta Overall göster
+        });
 
-    // 2. Kit Seçim Mantığı
-    const kitBtns = document.querySelectorAll('.kit-btn');
-    kitBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Aktif butonu değiştir
+    document.querySelectorAll('.kit-btn').forEach(btn => {
+        btn.onclick = () => {
             document.querySelector('.kit-btn.active').classList.remove('active');
             btn.classList.add('active');
-
-            const selectedKit = btn.dataset.kit;
-            
-            if (selectedKit === 'all') {
-                renderRankings(allPlayerData, true); // Gruplu Overall render
-            } else {
-                const filteredData = allPlayerData.filter(p => p.kit.toLowerCase() === selectedKit);
-                renderRankings(filteredData, false); // Grupsuz kit render
-            }
-        });
-    });
-
-    // 3. Modal Kapatma Mantığı
-    document.querySelector('.close-modal').addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) closeModal();
+            render(btn.dataset.kit);
+        }
     });
 });
 
-// Rankings Tablosunu Render Et (Hatalar düzeltildi)
-function renderRankings(data, isOverall) {
+function render(filter) {
     const container = document.getElementById('ranking-data');
-    container.innerHTML = ''; // Temizle
+    let displayList = [];
 
-    if (data.length === 0) {
-        container.innerHTML = '<div class="text-center" style="padding:40px; color:var(--muted-text);">Bu kitte oyuncu bulunamadı.</div>';
-        return;
-    }
-
-    // ⚠️ Overall ise Oyuncuları Grupla (Mükerrer oyuncu hatası fix)
-    let displayData = data;
-    if (isOverall) {
-        const grouped = {};
-        data.forEach(p => {
-            const nameKey = p.username.toLowerCase();
-            // Eğer oyuncu daha HT1 tierine sahipse veya puanı yüksekse onu tut
-            if (!grouped[nameKey] || (p.tierPriority < grouped[nameKey].tierPriority)) {
-                grouped[nameKey] = p;
+    if (filter === 'all') {
+        // OYUNCU BİRLEŞTİRME MANTIĞI (Overall için)
+        const groups = {};
+        rawData.forEach(p => {
+            const name = p.username.toLowerCase();
+            if (!groups[name]) {
+                groups[name] = { ...p, allKits: [p], totalPoints: p.points };
+            } else {
+                groups[name].allKits.push(p);
+                groups[name].totalPoints += p.points;
+                // En iyi tieri ana gösterim yap
+                if (p.tierWeight > groups[name].tierWeight) {
+                    groups[name].tier = p.tier;
+                    groups[name].tierWeight = p.tierWeight;
+                }
             }
         });
-        displayData = Object.values(grouped);
-        // Grupladıktan sonra puanına göre tekrar sırala (Overall puan önemli)
-        displayData.sort((a, b) => b.points - a.points);
+        displayList = Object.values(groups).sort((a, b) => b.tierWeight - a.tierWeight || b.totalPoints - a.totalPoints);
+    } else {
+        displayList = rawData.filter(p => p.kit.toLowerCase() === filter);
     }
 
-    displayData.forEach((player, index) => {
-        const card = document.createElement('div');
-        card.className = 'player-card';
-        // Tıklayınca Modalı Aç
-        card.onclick = () => openModal(player);
-        
-        const t = player.tier.toLowerCase().trim();
-        const badgeColor = `var(--${t})`; // CSS'teki rengi çek
-
-        card.innerHTML = `
-            <div class="rank-num">#${index + 1}</div>
-            <div class="player-info">
-                <img class="player-avatar" src="https://mc-heads.net/avatar/${player.username}/36" onerror="this.src='https://mc-heads.net/avatar/steve/36'">
-                <div class="player-name-puan">
-                    <span class="player-name">${player.username}</span>
-                    <span class="player-points">${player.points} PTS</span>
+    container.innerHTML = displayList.map((p, i) => `
+        <div class="player-card" onclick='openModal(${JSON.stringify(p)})'>
+            <div class="p-info">
+                <span style="color:#333; font-weight:800; width:20px">#${i+1}</span>
+                <img src="https://mc-heads.net/avatar/${p.username}/32" style="border-radius:6px">
+                <div>
+                    <span class="p-name">${p.username}</span>
+                    <span class="p-pts">${p.totalPoints || p.points} PTS</span>
                 </div>
             </div>
-            <div class="text-right">
-                <span class="tier-badge" style="color: ${badgeColor}; border-color: ${badgeColor}; background: rgba(0,0,0,0.3);">${player.tier.toUpperCase()}</span>
-            </div>
-        `;
-        container.appendChild(card);
-    });
+            <b class="${p.tier.toLowerCase()}">${p.tier.toUpperCase()}</b>
+        </div>
+    `).join('');
 }
 
-// Oyuncu Detay Panelini (Modal) Aç
-function openModal(player) {
-    document.getElementById('modal-avatar').src = `https://mc-heads.net/avatar/${player.username}/64`;
-    document.getElementById('modal-username').innerText = player.username;
-    document.getElementById('modal-points').innerText = `${player.points} PTS - ${player.kit.toUpperCase()} Kit`;
+function openModal(p) {
+    const modal = document.getElementById('player-modal');
+    document.getElementById('modal-username').innerText = p.username;
+    document.getElementById('modal-avatar').src = `https://mc-heads.net/avatar/${p.username}/64`;
     
-    const tierBadge = document.getElementById('modal-tier-badge');
-    tierBadge.innerText = player.tier.toUpperCase();
+    // Çoklu Kit Gösterimi
+    const kits = p.allKits || [p];
+    const listHtml = kits.map(k => `
+        <div class="tier-item">
+            <span style="font-size:12px; color:#666">${k.kit.toUpperCase()}</span>
+            <b class="${k.tier.toLowerCase()}">${k.tier.toUpperCase()}</b>
+        </div>
+    `).join('');
     
-    // Tier rengini modalda da uygula
-    const t = player.tier.toLowerCase().trim();
-    tierBadge.style.color = `var(--${t})`;
-    tierBadge.style.borderColor = `var(--${t})`;
-    tierBadge.style.background = 'rgba(0,0,0,0.3)';
+    document.querySelector('.modal-tier-list').innerHTML = `
+        <p style="font-size:10px; color:#444; text-align:center; text-transform:uppercase">Kayıtlı Tierlar</p>
+        ${listHtml}
+        <div style="text-align:center; margin-top:15px; font-weight:800; color:var(--accent)">
+            Toplam: ${p.totalPoints || p.points} PTS
+        </div>
+    `;
 
-    document.getElementById('player-modal').style.display = 'block';
+    modal.style.display = 'block';
 }
 
-function closeModal() {
-    document.getElementById('player-modal').style.display = 'none';
-}
+function closeModal() { document.getElementById('player-modal').style.display = 'none'; }
