@@ -1,115 +1,75 @@
 :root {
-    --bg-color: #0d1117;
-    --card-bg: #161b22;
-    --card-hover: #1c2128;
-    --border-color: #30363d;
-    --text-color: #c9d1d9;
-    --accent-color: #f85149;
-    --muted-text: #8b949e;
-    
-    /* Tier Renkleri */
-    --ht1: #ff4500; --ht2: #ff8c00; --ht3: #ffaa00; --ht4: #ffd700; --ht5: #ffff00;
-    --lt1: #00bfff; --lt2: #1e90ff; --lt3: #4169e1; --lt4: #8a2be2; --lt5: #9400d3;
+    --bg: #050505;
+    --card: #111111;
+    --border: #222222;
+    --accent: #f85149;
+    --paradise-purple: #7d5fff;
+    --text: #ffffff;
+    --muted: #888888;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Inter', sans-serif;
-    margin: 0; padding: 0;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
 }
 
-.container { max-width: 1000px; margin: 120px auto; padding: 0 20px; }
+.container { max-width: 900px; margin: 120px auto; padding: 0 20px; }
 
 /* Navbar */
 .navbar {
-    background: rgba(13, 17, 23, 0.95);
-    border-bottom: 1px solid var(--border-color);
-    padding: 12px 0; position: fixed; width: 100%; top: 0; z-index: 1000;
-    backdrop-filter: blur(12px);
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    position: fixed; width: 100%; top: 0; z-index: 1000;
 }
+.nav-container { height: 70px; display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+.logo { font-size: 22px; font-weight: 800; }
+.logo span { color: var(--accent); }
+.nav-links a { color: var(--muted); text-decoration: none; margin-left: 25px; font-weight: 600; transition: 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: white; }
 
-.nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-.logo { font-size: 24px; font-weight: 800; letter-spacing: -1.5px; color: white; }
-.logo span { color: var(--accent-color); }
-.nav-links a { color: var(--muted-text); text-decoration: none; margin-left: 25px; font-size: 15px; font-weight: 600; transition: 0.2s; }
-.nav-links a.active, .nav-links a:hover { color: white; }
-
-/* Kit Selector (MCTiers Style) */
-.kit-selector {
-    display: flex; gap: 5px; margin-bottom: 30px;
-    background: #090c10; padding: 5px; border-radius: 12px; border: 1px solid var(--border-color);
-    width: fit-content;
+/* Sunucu Kartı (Paradise) */
+.server-card.paradise {
+    background: linear-gradient(145deg, #1a123a, #0a0a0a);
+    border: 2px solid var(--paradise-purple);
+    border-radius: 20px; padding: 30px;
+    box-shadow: 0 10px 40px rgba(125, 95, 255, 0.2);
 }
-
-.kit-btn {
-    background: transparent; border: none; color: var(--muted-text);
-    padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px;
-    display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s;
+.server-header h2 { font-size: 32px; color: var(--paradise-purple); margin: 0; }
+.ip-badge { background: var(--paradise-purple); padding: 5px 12px; border-radius: 6px; font-weight: 800; font-size: 14px; }
+.server-content { margin: 25px 0; line-height: 1.8; }
+.server-content b { color: var(--paradise-purple); }
+.dc-button-large {
+    background: #5865F2; color: white; text-decoration: none;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px; border-radius: 12px; font-weight: 800; transition: 0.3s;
 }
+.dc-button-large:hover { transform: scale(1.02); background: #4752c4; }
 
-.kit-btn img { width: 18px; height: 18px; object-fit: contain; }
-.kit-btn:hover { color: white; background: rgba(255,255,255,0.03); }
-.kit-btn.active { background: var(--card-bg); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid var(--border-color); }
-
-/* Table Headings */
-.header-grid {
-    display: grid; grid-template-columns: 60px 1fr 150px 120px;
-    padding: 10px 25px; color: var(--muted-text); font-size: 12px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 1px;
-}
-
-/* Player Card */
+/* Sıralama Kartları */
 .player-card {
-    display: grid; grid-template-columns: 60px 1fr 150px 120px;
-    align-items: center; background: var(--card-bg);
-    border: 1px solid var(--border-color); border-radius: 12px;
-    margin-bottom: 10px; padding: 16px 25px; cursor: pointer; transition: 0.2s;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 15px 20px; margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: 0.2s;
 }
+.player-card:hover { border-color: #444; transform: scale(1.01); }
+.p-name { font-weight: 700; font-size: 17px; }
 
-.player-card:hover { transform: translateY(-3px); background: var(--card-hover); border-color: #8b949e; }
-.rank-num { font-size: 22px; font-weight: 800; font-style: italic; color: #30363d; }
-.player-info { display: flex; align-items: center; gap: 15px; }
-.player-avatar { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
-.player-name { font-weight: 700; font-size: 17px; color: white; }
-.text-right { text-align: right; }
-.points-val { font-weight: 700; color: white; font-size: 15px; }
-
-/* Tier Badges (Dynamic) */
-.tier-badge {
-    padding: 5px 12px; border-radius: 6px; font-weight: 800; font-size: 13px;
-    border: 1px solid rgba(255,255,255,0.1); width: fit-content; display: inline-block;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-.tier-badge.large { font-size: 18px; padding: 8px 20px; border-radius: 8px; }
-
-/* Modal (Player Detail Panel) */
-.modal {
-    display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-    width: 100%; height: 100%; overflow: auto;
-    background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
-}
-
+/* Modal Tasarımı */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; padding: 20px; }
 .modal-content {
-    background-color: #161b22; margin: 10% auto; padding: 30px;
-    border: 1px solid var(--border-color); border-radius: 16px;
-    width: 90%; max-width: 500px; position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-    animation: modalSlide 0.3s ease;
+    background: #111; border: 1px solid #333; max-width: 450px;
+    margin: 100px auto; border-radius: 24px; padding: 40px; position: relative;
+    text-align: center;
 }
+.modal-stats { display: flex; justify-content: space-around; margin: 30px 0; }
+.stat-box span { display: block; font-size: 10px; color: var(--muted); }
+.stat-box strong { font-size: 20px; }
+.modal-tier-display { background: #000; padding: 20px; border-radius: 15px; border: 1px dashed #333; }
 
-@keyframes modalSlide { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.close-modal { color: var(--muted-text); float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-.close-modal:hover { color: white; }
-.modal-body { display: flex; flex-direction: column; gap: 20px; }
-.modal-header-info { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
-#modal-avatar { width: 64px; height: 64px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
-#modal-username { font-size: 28px; font-weight: 800; color: white; margin: 0; }
-#modal-points { font-size: 16px; color: var(--muted-text); font-weight: 600; }
-.modal-tier-section { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
-.modal-tier-section h3 { margin: 0 0 10px 0; font-size: 14px; color: var(--muted-text); text-transform: uppercase; letter-spacing: 1px; }
-
-footer { text-align: center; padding: 60px; color: var(--muted-text); font-size: 12px; }
+/* Tier Renkleri */
+.ht1, .ht2, .ht3, .ht4, .ht5 { color: #ffaa00; }
+.lt1, .lt2, .lt3, .lt4, .lt5 { color: #58a6ff; }
