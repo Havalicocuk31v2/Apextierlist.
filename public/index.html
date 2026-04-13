@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX TIERS | Rankings</title>
+    <title>APEX TIERS | Minecraft Competitive</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
         <div class="nav-container">
-            <div class="logo" onclick="showSection('rankings')" style="cursor:pointer">APEX<span>TIERS</span></div>
+            <div class="logo" onclick="location.reload()">APEX<span>TIERS</span></div>
             <nav class="nav-links">
-                <a href="#" class="nav-item active" onclick="showSection('rankings')">Sıralama</a>
-                <a href="#" class="nav-item" onclick="showSection('servers')">Sunucularımız</a>
+                <a href="javascript:void(0)" class="nav-item active" id="btn-rankings">Sıralama</a>
+                <a href="javascript:void(0)" class="nav-item" id="btn-servers">Sunucularımız</a>
                 <a href="https://discord.gg/apextierlist" target="_blank" class="nav-item">Discord</a>
             </nav>
         </div>
@@ -26,8 +26,7 @@
                 <button class="kit-btn" data-kit="elytra">Elytra</button>
                 <button class="kit-btn" data-kit="elytratrap">ElytraTrap</button>
             </div>
-            <div id="ranking-data">
-                </div>
+            <div id="ranking-data"></div>
         </section>
 
         <section id="servers-section" style="display: none;">
@@ -59,14 +58,9 @@
                 <img id="modal-avatar" src="" alt="">
                 <h2 id="modal-username"></h2>
             </div>
-            <div class="modal-tier-list">
-                </div>
+            <div class="modal-tier-list" id="modal-tier-list"></div>
         </div>
     </div>
-
-    <footer>
-        <p>Copyright © APEXTIERS 2026</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
